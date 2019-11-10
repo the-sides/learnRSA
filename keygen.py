@@ -1,19 +1,21 @@
-import argparse, secrets
+from utilities import findPrime, parseArguments
+from math import pow, ceil
 
 # Parse arguments
-parser = argparse.ArgumentParser()
-parser.add_argument('-p', nargs=1, default=None, help='Public key file')
-parser.add_argument('-s', nargs=1, default=None, help='Secret key file')
-parser.add_argument('-n', nargs=1, default=None, help='bits for p and q')
-
-args = parser.parse_args()
+args = parseArguments()
 
 publicKeyName  = args.p[0]
 privateKeyName = args.s[0]
 pBits          = int(args.n[0])
-pBytes         = pBits/8
+
+pBytes         = ceil(pBits/8)
+
 
 print(publicKeyName, privateKeyName, pBits)
+
+# Find prime numbers for p and q
+p = findPrime(pBytes)
+
 
 with open(publicKeyName, 'w') as fin:
     fin.write('public key stuff')
