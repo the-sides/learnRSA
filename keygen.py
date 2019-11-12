@@ -1,4 +1,4 @@
-from utilities import findPrime, parseArguments
+from utilities import findPrime, parseArguments, writeKey
 from math import pow, ceil
 
 # Parse arguments
@@ -20,9 +20,10 @@ q = findPrime(pBytes)
 while p == q:
     q = findPrime(pBytes)
 
+N = p*q
+totient = (p-1)*(q-1)
+d = e = 666   # Fake data for the time being.
 
-with open(publicKeyName, 'w') as fin:
-    fin.write('public key stuff')
+writeKey(publicKeyName, NBits, N, e)
+writeKey(privateKeyName, NBits, N, d)
 
-with open(privateKeyName, 'w') as fin:
-    fin.write('private key stuff')
