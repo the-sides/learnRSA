@@ -1,6 +1,7 @@
 import secrets
 import argparse
 from sympy import isprime
+from math import gcd
 
 def findPrime(bytesN):
     # p = secrets.token_bytes(bytesN)
@@ -26,3 +27,19 @@ def parseArguments():
     parser.add_argument('-s', nargs=1, default=None, help='Secret private key file')
     parser.add_argument('-n', nargs=1, default=None, help='bits for p and q')
     return parser.parse_args()
+
+def findCoprime(n, atBitsN):
+    # Used for finding the public key encrypter, e
+    e = secrets.randbits(atBitsN)
+    rounds = 0
+    while gcd(e, n) != 1:
+        e = secrets.randbits(atBitsN)
+        rounds += 1
+    print(f'e found after {rounds} rounds')
+    return e
+
+# def findMultInverseMod(e, tot, bitsN):
+#     d = secrets.randbits(bitsN)
+#     while (e * d) % tot != 1:
+#         d = secrets.randbits(bitsN)
+#     return d
