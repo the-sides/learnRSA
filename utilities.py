@@ -2,6 +2,7 @@ import secrets
 import argparse
 from sympy import isprime
 from math import gcd
+from wikiSteals import mulinv
 
 def findPrime(bytesN):
     # p = secrets.token_bytes(bytesN)
@@ -38,8 +39,10 @@ def findCoprime(n, atBitsN):
     print(f'e found after {rounds} rounds')
     return e
 
-# def findMultInverseMod(e, tot, bitsN):
-#     d = secrets.randbits(bitsN)
-#     while (e * d) % tot != 1:
-#         d = secrets.randbits(bitsN)
-#     return d
+
+def findMultInverseMod(e, tot):
+    d = mulinv(e, tot)
+    if not d:
+        print('inverse failed')
+        d = mulinv(e, tot)
+    return d
