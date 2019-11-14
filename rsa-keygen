@@ -8,7 +8,7 @@ from math import pow, ceil
 debugging = True
 
 # Parse arguments
-args = parseArguments()
+args = parseArguments('keygen')
 
 publicKeyName  = args.p[0]
 privateKeyName = args.s[0]
