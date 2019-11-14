@@ -1,16 +1,20 @@
 #!/usr/bin/python3
 from utilities import parseArguments, findRandWithNoZero
-from math import pow
 
 args = parseArguments('enc')
 
 keyFilename  = args.k[0]
 inputFilename = args.i[0]
+plaintext = ''
 
 NBits = 0
 N = 0
 e = 0
 d = 0
+
+with open(inputFilename, 'r') as fin:
+    plaintext = fin.readline()
+
 with open(keyFilename, 'r') as fin:
     NBits = int(fin.readline())
     N = int(fin.readline())
@@ -27,10 +31,12 @@ print(f'NBits:{NBits}\nN:{N}\ne:{e}')
 rBytes = int(NBits/16) # Half of the N bytes
 r = findRandWithNoZero(rBytes)
 
-c = b'\x00'+b'\x02' + b'\x00'
+c = b'\x00'+b'\x02'+ r + b'\x00' + bytes(plaintext, 'utf-8')
+print('message:', c)
 cint = int.from_bytes(c, 'big', signed=False)
 print(f'cint: {cint}')
-c0 = pow(cint, e) % N
-print(c0)
-m = pow(c0, d) % N
-print(m.to_bytes(NBits, 'big'))
+c0 = pow(cint, e, N) 
+print("cipher text",c0)
+m = pow(c0, d, N) 
+print('cycled int', m)
+print('cycled message', m.to_bytes(128, 'big'))

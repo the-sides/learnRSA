@@ -2,7 +2,7 @@
 
 from debug import verifyKeys
 from utilities import findPrime, parseArguments, writeKey, findCoprime, findMultInverseMod
-from math import pow, ceil
+from math import ceil
 
 # Constants
 debugging = True
@@ -30,7 +30,7 @@ while p == q:
 
 N = p*q
 totient = (p-1)*(q-1)
-e = findCoprime(totient, 128)
+e = findCoprime(totient, 8)
 d = findMultInverseMod(e, totient)
 
 
