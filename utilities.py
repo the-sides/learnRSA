@@ -27,11 +27,16 @@ def writeKey(filename, _NBits, _N, _num):
             fin.write(val)
             fin.write('\n')
 
-def parseArguments():
+def parseArguments(operation):
     parser = argparse.ArgumentParser()
-    parser.add_argument('-p', nargs=1, default=None, help='Public key file')
-    parser.add_argument('-s', nargs=1, default=None, help='Secret private key file')
-    parser.add_argument('-n', nargs=1, default=None, help='bits for p and q')
+    if operation == 'keygen':
+        parser.add_argument('-p', nargs=1, default=None, help='Public key file')
+        parser.add_argument('-s', nargs=1, default=None, help='Secret private key file')
+        parser.add_argument('-n', nargs=1, default=None, help='bits for p and q')
+    elif operation in ['enc', 'dec']:
+        parser.add_argument('-k', nargs=1, default=None, help='Key file')
+        parser.add_argument('-i', nargs=1, default=None, help='File containing an integer in Z*n in String form')
+        parser.add_argument('-o', nargs=1, default=None, help='File to write resulting output in String form')
     return parser.parse_args()
 
 def findCoprime(n, atBitsN):
@@ -52,10 +57,10 @@ def findMultInverseMod(e, tot):
         d = mulinv(e, tot)
     return d
 
-def findRandWithNoZero(n, depth=0):
-    r = secrets.token_bytes((2*n)-4)
+def findRandWithNoZero(size, depth=0):
+    r = secrets.token_bytes(size)
     for char in r:
         if char == 0x0:
-            return findRandWithNoZero(n, depth+1)
-    print('Rand found with no zeros at depth:{}'.format(depth))
+            return findRandWithNoZero(size, depth+1)
+    print('Rand found with no zeros after {} attempts'.format(depth))
     return r
