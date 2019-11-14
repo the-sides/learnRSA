@@ -46,3 +46,11 @@ def findMultInverseMod(e, tot):
         print('inverse failed')
         d = mulinv(e, tot)
     return d
+
+def findRandWithNoZero(n, depth=0):
+    r = secrets.token_bytes((2*n)-4)
+    for char in r:
+        if char == 0x0:
+            return findRandWithNoZero(n, depth+1)
+    print('Rand found with no zeros at depth:{}'.format(depth))
+    return r
