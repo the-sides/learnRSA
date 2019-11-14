@@ -1,4 +1,4 @@
-python3 keygen.py -p key.pub -s key -n 1024
+python3 rsa-keygen -p key.pub -s key -n 1024
 echo '\n++++++++++++++++++++++++++++++++'
 echo 'public key (key.pub) contents'
 echo '++++++++++++++++++++++++++++++++'

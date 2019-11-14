@@ -1,8 +1,13 @@
+# From core library
 import secrets
 import argparse
-from sympy import isprime
 from math import gcd
+
+# From local python files
 from wikiSteals import mulinv
+
+# From dependencies
+from sympy import isprime
 
 def findPrime(bytesN):
     # p = secrets.token_bytes(bytesN)
