@@ -1,5 +1,36 @@
 #!/usr/bin/python3
-from utilities import findRandWithNoZero
+from utilities import parseArguments, findRandWithNoZero
+from math import pow
 
+args = parseArguments('enc')
 
-print(findRandWithNoZero(int(1024/8)))
+keyFilename  = args.k[0]
+inputFilename = args.i[0]
+
+NBits = 0
+N = 0
+e = 0
+d = 0
+with open(keyFilename, 'r') as fin:
+    NBits = int(fin.readline())
+    N = int(fin.readline())
+    e = int(fin.readline())
+
+with open('key', 'r') as fin:
+    NBits = int(fin.readline())
+    N = int(fin.readline())
+    d = int(fin.readline())
+
+# print(findRandWithNoZero(int(1024/8)), keyFilename, inputFilename)
+print(f'NBits:{NBits}\nN:{N}\ne:{e}')
+
+rBytes = int(NBits/16) # Half of the N bytes
+r = findRandWithNoZero(rBytes)
+
+c = b'\x00'+b'\x02' + b'\x00'
+cint = int.from_bytes(c, 'big', signed=False)
+print(f'cint: {cint}')
+c0 = pow(cint, e) % N
+print(c0)
+m = pow(c0, d) % N
+print(m.to_bytes(NBits, 'big'))
