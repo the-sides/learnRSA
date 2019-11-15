@@ -4,14 +4,14 @@ from utilities import parseArguments, findRandWithNoZero
 args = parseArguments('dec')
 
 
-keyFilename  = args.k[0]
-inputFilename = args.i[0]
+keyFilename    = args.k[0]
+inputFilename  = args.i[0]
 outputFilename = args.o[0]
-plaintext = ''
+plaintext      = ''
 
 NBits = 0
-N = 0
-d = 0
+N     = 0
+d     = 0
 
 with open(inputFilename, 'r') as fin:
     ciphertext = int(fin.readline())

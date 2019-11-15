@@ -3,22 +3,22 @@ from utilities import parseArguments, findRandWithNoZero
 
 args = parseArguments('enc')
 
-keyFilename  = args.k[0]
-inputFilename = args.i[0]
+keyFilename    = args.k[0]
+inputFilename  = args.i[0]
 outputFilename = args.o[0]
 plaintext = ''
 
 NBits = 0
-N = 0
-e = 0
+N     = 0
+e     = 0
 
 with open(inputFilename, 'r') as fin:
     plaintext = fin.readline()
 
 with open(keyFilename, 'r') as fin:
     NBits = int(fin.readline())
-    N = int(fin.readline())
-    e = int(fin.readline())
+    N     = int(fin.readline())
+    e     = int(fin.readline())
 
 NBytes = int(NBits/8)
 
