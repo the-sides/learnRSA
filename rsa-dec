@@ -6,6 +6,7 @@ args = parseArguments('dec')
 
 keyFilename  = args.k[0]
 inputFilename = args.i[0]
+outputFilename = args.o[0]
 plaintext = ''
 
 NBits = 0
@@ -24,6 +25,10 @@ msgLength = int(NBits/8)
 
 print(f'NBits:{NBits}\nN:{N}\ne:{d}')
 
-m = pow(ciphertext, d, N) 
-print('cycled int', m)
-print('cycled message', m.to_bytes(msgLength, 'big'))
+mint = pow(ciphertext, d, N) 
+m    = mint.to_bytes(msgLength, 'big')
+print('cycled int', mint)
+print('cycled message', m)
+
+with open(outputFilename, 'w+') as fout:
+    fout.write(str(m))

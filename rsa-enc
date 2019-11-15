@@ -20,10 +20,11 @@ with open(keyFilename, 'r') as fin:
     N = int(fin.readline())
     e = int(fin.readline())
 
+NBytes = int(NBits/8)
 
 print(f'NBits:{NBits}\nN:{N}\ne:{e}')
 
-rBytes = int(NBits/16) # Half of the N bytes
+rBytes = int(NBytes/2) 
 r = findRandWithNoZero(rBytes)
 
 c0 = b'\x00'+b'\x02'+ r + b'\x00' + bytes(plaintext, 'utf-8')
