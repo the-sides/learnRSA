@@ -1,5 +1,29 @@
 #!/usr/bin/python3
-from utilities import findRandWithNoZero
+from utilities import parseArguments, findRandWithNoZero
+
+args = parseArguments('dec')
 
 
-print(findRandWithNoZero(int(1024/8)))
+keyFilename  = args.k[0]
+inputFilename = args.i[0]
+plaintext = ''
+
+NBits = 0
+N = 0
+d = 0
+
+with open(inputFilename, 'r') as fin:
+    ciphertext = int(fin.readline())
+
+with open(keyFilename, 'r') as fin:
+    NBits = int(fin.readline())
+    N = int(fin.readline())
+    d = int(fin.readline())
+
+msgLength = int(NBits/8)
+
+print(f'NBits:{NBits}\nN:{N}\ne:{d}')
+
+m = pow(ciphertext, d, N) 
+print('cycled int', m)
+print('cycled message', m.to_bytes(msgLength, 'big'))

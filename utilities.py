@@ -10,13 +10,12 @@ from wikiSteals import mulinv
 from sympy import isprime
 
 def findPrime(bytesN):
-    # p = secrets.token_bytes(bytesN)
     p = secrets.randbits(bytesN * 8)
     testRounds = 0
     while not isprime(p):
         p = secrets.randbits(bytesN * 8)
         testRounds += 1
-    print(f'Prime Confirmed!\n{p}\nAfter {testRounds} test rounds.')
+    # print(f'Prime Confirmed!\n{p}\nAfter {testRounds} test rounds.')
     
     return p
 
@@ -46,7 +45,7 @@ def findCoprime(n, atBitsN):
     while gcd(e, n) != 1:
         e = secrets.randbits(atBitsN)
         rounds += 1
-    print(f'e found after {rounds} rounds')
+    # print(f'e found after {rounds} rounds')
     return e
 
 
@@ -62,5 +61,5 @@ def findRandWithNoZero(size, depth=0):
     for char in r:
         if char == 0x0:
             return findRandWithNoZero(size, depth+1)
-    print('Rand found with no zeros after {} attempts'.format(depth))
+    # print('Rand found with no zeros after {} attempts'.format(depth))
     return r
