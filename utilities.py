@@ -66,6 +66,7 @@ def findRandWithNoZero(size, depth=0):
 
 def removePadding(raw):
     for char in raw:
-        print(char)
         if char == 2:
             # Start looking for end of random
+
+            

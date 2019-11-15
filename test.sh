@@ -15,7 +15,7 @@ python3.7 rsa-enc -k key.pub -i msg -o output > /dev/null
 echo '\n++++++++++++++++++++++++++++++++'
 echo 'Decrypted message (washed)...'
 echo '++++++++++++++++++++++++++++++++'
-python3.7 rsa-dec -k key -i output -o washed
+python3.7 rsa-dec -k key -i output -o washed > /dev/null
 cat washed
 echo '\ndeleting key...'
 # rm -rf key.pub key
