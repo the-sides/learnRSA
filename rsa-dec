@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from utilities import parseArguments, findRandWithNoZero
+from utilities import parseArguments, findRandWithNoZero, removePadding
 
 args = parseArguments('dec')
 
@@ -29,6 +29,8 @@ mint = pow(ciphertext, d, N)
 m    = mint.to_bytes(msgLength, 'big')
 print('cycled int', mint)
 print('cycled message', m)
+
+removePadding(m)
 
 with open(outputFilename, 'w+') as fout:
     fout.write(str(m))

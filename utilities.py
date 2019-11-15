@@ -63,3 +63,9 @@ def findRandWithNoZero(size, depth=0):
             return findRandWithNoZero(size, depth+1)
     # print('Rand found with no zeros after {} attempts'.format(depth))
     return r
+
+def removePadding(raw):
+    for char in raw:
+        print(char)
+        if char == 2:
+            # Start looking for end of random
