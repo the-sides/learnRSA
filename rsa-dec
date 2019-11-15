@@ -30,7 +30,7 @@ m    = mint.to_bytes(msgLength, 'big')
 print('cycled int', mint)
 print('cycled message', m)
 
-removePadding(m)
+m = removePadding(m)
 
 with open(outputFilename, 'w+') as fout:
     fout.write(str(m))

@@ -65,8 +65,18 @@ def findRandWithNoZero(size, depth=0):
     return r
 
 def removePadding(raw):
+    target = 2
+    capture = False
+    rv = ''
     for char in raw:
-        if char == 2:
-            # Start looking for end of random
+        if not capture and char == target:
+            # Benchmark reached
+            if target == 2:
+                target = 0
+            elif target == 0:
+                capture = True
 
-            
+        elif capture == True:
+            rv += chr(char)
+        # Else, we are at a zero or random pad character
+    return rv
