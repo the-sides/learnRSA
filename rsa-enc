@@ -13,7 +13,7 @@ N     = 0
 e     = 0
 
 with open(inputFilename, 'r') as fin:
-    plaintext = fin.readline()
+    plaintext = fin.read().replace('\n','')
 
 with open(keyFilename, 'r') as fin:
     NBits = int(fin.readline())
