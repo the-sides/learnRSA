@@ -22,15 +22,15 @@ with open(keyFilename, 'r') as fin:
 
 NBytes = int(NBits/8)
 
-print(f'NBits:{NBits}\nN:{N}\ne:{e}')
+# print(f'NBits:{NBits}\nN:{N}\ne:{e}')
 
 rBytes = int(NBytes/2) 
 r = findRandWithNoZero(rBytes)
 
 c0 = b'\x00'+b'\x02'+ r + b'\x00' + bytes(plaintext, 'utf-8')
-print('message:', c0)
+# print('message:', c0)
 cint = int.from_bytes(c0, 'big', signed=False)
-print(f'cint: {cint}')
+# print(f'cint: {cint}')
 c = pow(cint, e, N) 
 
 with open(outputFilename, 'w+') as fout:

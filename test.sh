@@ -12,6 +12,8 @@ echo 'Encrypting message...'
 echo '++++++++++++++++++++++++++++++++'
 cat msg
 python3.7 rsa-enc -k key.pub -i msg -o output
+echo '    -----   secret ------   '
+cat output
 echo '\n++++++++++++++++++++++++++++++++'
 echo 'Decrypted message (washed)...'
 echo '++++++++++++++++++++++++++++++++'

@@ -23,12 +23,12 @@ with open(keyFilename, 'r') as fin:
 
 msgLength = int(NBits/8)
 
-print(f'NBits:{NBits}\nN:{N}\ne:{d}')
+# print(f'NBits:{NBits}\nN:{N}\ne:{d}')
 
 mint = pow(ciphertext, d, N) 
 m    = mint.to_bytes(msgLength, 'big')
-print('cycled int', mint)
-print('cycled message', m)
+# print('cycled int', mint)
+# print('cycled message', m)
 
 m = removePadding(m)
 
