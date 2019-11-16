@@ -16,6 +16,7 @@ echo '\n++++++++++++++++++++++++++++++++'
 echo 'Decrypted message (washed)...'
 echo '++++++++++++++++++++++++++++++++'
 python3.7 rsa-dec -k key -i output -o washed 
+echo '================ message =============='
 cat washed
-echo '\ndeleting key...'
 # rm -rf key.pub key
+echo 'deleting key...'
